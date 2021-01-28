@@ -6,7 +6,6 @@ import java.net.SocketTimeoutException
 sealed class DataState<out R>{
     data class Success<out T>(val value:T) :DataState<T>()
     object Loading : DataState<Nothing>()
-    data class PageChange(val pageIndex:Int,val totalPage:Int):DataState<Nothing>()
     object NoConnection:DataState<Nothing>()
     data class ServerError(val e:HttpException):DataState<Nothing>()
     data class TimeoutError(val e:SocketTimeoutException):DataState<Nothing>()
