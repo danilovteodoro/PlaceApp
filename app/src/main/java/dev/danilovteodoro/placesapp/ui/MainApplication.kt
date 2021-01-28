@@ -1,7 +1,8 @@
 package dev.danilovteodoro.placesapp.ui
 
+import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class MainApplication {
+class MainApplication : Application() {
 }

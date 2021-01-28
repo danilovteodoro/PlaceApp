@@ -1,7 +1,6 @@
 package util
 
 object Constantes {
-    const val DATE_FORMAT="yyyy-MM-dd"
-    const val BASE_URL = "https://api.themoviedb.org/3/"
-    const val API_KEY="3af531dae421e736080d081e71daa07d"
+    const val DATE_FORMAT="dd/MM/yyyy HH:mm"
+    const val BASE_URL = "http://5f5a8f24d44d640016169133.mockapi.io/api/"
 }
