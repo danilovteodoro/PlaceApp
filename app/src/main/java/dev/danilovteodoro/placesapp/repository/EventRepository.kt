@@ -2,6 +2,8 @@ package dev.danilovteodoro.placesapp.repository
 
 import android.content.Context
 import dagger.hilt.android.qualifiers.ActivityContext
+import dev.danilovteodoro.placesapp.data.EventDao
+import dev.danilovteodoro.placesapp.data.mapper.EventDataMapper
 import dev.danilovteodoro.placesapp.model.CheckIn
 import dev.danilovteodoro.placesapp.model.Event
 import dev.danilovteodoro.placesapp.network.api.CheckInApi
@@ -22,29 +24,40 @@ constructor(
     val eventMapper: EventMapper,
     val checkInApi: CheckInApi,
     val checkInMapper: CheckInMapper,
+    val eventDao: EventDao,
+    val eventDataMapper: EventDataMapper,
     @ActivityContext val context:Context
 ){
     fun getEvents():Flow<DataState<List<Event>>> = flow {
         emit(DataState.Loading)
-        if (!AndroidUtil.isNetworkConnected(context)){
-            emit(DataState.NoConnection)
-            return@flow
+        var events:List<Event>
+        if (AndroidUtil.isNetworkConnected(context)){
+            val eventsNetwork = eventApi.getEvents()
+            events  = eventMapper.mapFromEntityList(eventsNetwork)
+            insertAll(events)
         }
-        val eventsNetwork = eventApi.getEvents()
-        val events:List<Event> = eventMapper.mapFromEntityList(eventsNetwork)
-        emit(DataState.Success(events))
+        val eventsData = eventDao.list()
+        events = eventDataMapper.fromEntityList(eventsData)
+        if(events.isNotEmpty()){
+            emit(DataState.Success(events))
+        }else{
+            emit(DataState.NoConnection)
+        }
     }.catch { e->
         emit(DataState.dataStateFromError(e))
     }
 
     fun getEventById(id:String):Flow<DataState<Event>> = flow {
         emit(DataState.Loading)
-        if (!AndroidUtil.isNetworkConnected(context)) {
-            emit(DataState.NoConnection)
-            return@flow
+        var event: Event
+        if (AndroidUtil.isNetworkConnected(context)) {
+            val eventNetwork = eventApi.getEventById(id)
+            event  = eventMapper.mapFromEntity(eventNetwork)
+            eventDao.insert(eventDataMapper.mapToEntity(event) )
         }
-        val eventNetwork = eventApi.getEventById(id)
-        val event: Event = eventMapper.mapFromEntity(eventNetwork)
+        event = eventDataMapper.mapFromEntity(
+             eventDao.get(id)
+        )
         emit(DataState.Success(event))
     }.catch { e->
         emit(DataState.dataStateFromError(e))
@@ -61,5 +74,12 @@ constructor(
         emit(DataState.Success(true))
     }.catch { e->
         emit(DataState.dataStateFromError(e))
+    }
+
+    private suspend fun insertAll(events:List<Event>){
+        events.forEach { event ->
+            val eventData = eventDataMapper.mapToEntity(event)
+            eventDao.insert(eventData)
+        }
     }
 }
