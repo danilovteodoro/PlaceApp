@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">PlacesApp</string>
+    <string name="header_events">Novos\n\tEventos</string>
+    <string name="str_retry">Tentar Novamente</string>
+    <string name="error_network"> Conexão Indisponível! Tente novamente mais tarde.</string>
+    <string name="error_server"> Estamos com problemas em nossos Servidores! Tente novamente mais tarde.</string>
+    <string name="error_generic"> Ocorreu um erro inesperado! Tente novamente mais tarde.</string>
+    <string name="error_timeout">Tempo de conexão exedido! Tente novamente mais tarde</string>
+    <string name="verNoMapa">Ver no mapa</string>
+    <string name="success_checkin">CheckIn efetuado com sucesso !</string>
+    <string name="error_checkin">Não foi possível realizar o check-in! o seuinte erro ocorreu:</string>
+    <string name="checkin_error_name_empty">O nome deve ser informado!</string>
+    <string name="checkin_error_email_empty">O email deve ser informado!</string>
+    <string name="checkin_error_email_invalid">Email inválido!!</string>
 </resources>

@@ -1,12 +1,13 @@
 package dev.danilovteodoro.placesapp.network
 
 import com.google.gson.annotations.SerializedName
+import java.util.*
 
 data class EventNetwork(
     @SerializedName("people")
     val people: List<Any?>,
     @SerializedName("date")
-    val date: Long,
+    val date: Date,
     @SerializedName("description")
     val description: String,
     @SerializedName("image")

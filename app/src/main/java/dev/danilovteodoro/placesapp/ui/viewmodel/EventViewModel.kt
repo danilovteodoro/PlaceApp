@@ -3,11 +3,13 @@ package dev.danilovteodoro.placesapp.ui.viewmodel
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
+import dev.danilovteodoro.placesapp.model.CheckIn
 import dev.danilovteodoro.placesapp.model.Event
 import dev.danilovteodoro.placesapp.repository.EventRepository
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import util.DataState
+import java.util.*
 
 class EventViewModel
 @ViewModelInject
@@ -22,6 +24,9 @@ constructor(
     private var _selectedEventLv:MutableLiveData<DataState<Event>> = MutableLiveData()
     val selectedEventLv:LiveData<DataState<Event>> get() = _selectedEventLv
 
+    private var _checkInLv:MutableLiveData<DataState<Boolean>> = MutableLiveData()
+    val checkInLv:LiveData<DataState<Boolean>> get() = _checkInLv
+
     fun callStateListener(stateListener: EventStateListener){
         when(stateListener){
             is EventStateListener.GetEvents -> {
@@ -29,6 +34,10 @@ constructor(
             }
             is EventStateListener.GetEvent -> {
                 getEvent(stateListener.eventId)
+            }
+
+            is EventStateListener.PostCheckIn -> {
+                postCheckIn(stateListener.checkIn)
             }
         }
     }
@@ -45,9 +54,18 @@ constructor(
         }.launchIn(viewModelScope)
     }
 
+
+    private fun postCheckIn(checkIn: CheckIn){
+        repository.postCheckIn(checkIn)
+                .onEach { dataState ->
+                     _checkInLv.value = dataState
+                }.launchIn(viewModelScope)
+    }
+
 }
 
 sealed class EventStateListener{
     object GetEvents : EventStateListener()
     data class GetEvent(val eventId:String):EventStateListener()
+    data class PostCheckIn(val checkIn: CheckIn):EventStateListener()
 }

@@ -1,10 +1,11 @@
 package dev.danilovteodoro.placesapp.model
 
 import com.google.gson.annotations.SerializedName
+import java.util.*
 
 data class Event(
     val people: List<Any?>,
-    val date: Long,
+    val date: Date,
     val description: String,
     val image: String,
     val longitude: Double,
