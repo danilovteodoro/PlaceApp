@@ -8,7 +8,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dev.danilovteodoro.placesapp.data.AppDatabase
-import dev.danilovteodoro.placesapp.data.EventDao
+import dev.danilovteodoro.placesapp.data.dao.EventDao
 import javax.inject.Singleton
 
 @Module
@@ -25,7 +25,7 @@ object DatabaseModule {
 
     @Provides
     @Singleton
-    fun provideEventDao(database:AppDatabase):EventDao{
+    fun provideEventDao(database:AppDatabase): EventDao {
         return database.eventDao()
     }
 }

@@ -122,7 +122,8 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/txtDescription"
                     style="@style/ItemTextContent"
-                    android:paddingTop="15dp"/>
+                    android:textColor="@color/colorContent"
+                    android:padding="15dp"/>
             </LinearLayout>
 
             <include layout="@layout/inflater_error"
@@ -142,7 +143,7 @@
         style="@style/texto18.white"
         android:theme="@style/Theme.PlacesApp"
         android:fitsSystemWindows="true"
-
+        
 
         >
         <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -153,6 +154,7 @@
             android:id="@+id/collapse"
             android:fitsSystemWindows="true"
             app:collapsedTitleTextAppearance="@style/texto18.white"
+            
 
             >
             <ImageView
@@ -185,7 +187,7 @@
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_place"
+        android:src="@drawable/ic_event_available"
         android:layout_gravity="bottom|right"
         android:layout_margin="16dp"
         android:id="@+id/fabCheckIn"

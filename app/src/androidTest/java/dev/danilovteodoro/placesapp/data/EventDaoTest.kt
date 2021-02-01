@@ -2,6 +2,7 @@ package dev.danilovteodoro.placesapp.data
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import dev.danilovteodoro.placesapp.data.dao.EventDao
 import dev.danilovteodoro.placesapp.di.DatabaseModule
 import kotlinx.coroutines.runBlocking
 import org.junit.Before

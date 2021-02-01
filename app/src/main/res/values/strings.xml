@@ -8,11 +8,12 @@
     <string name="error_timeout">Tempo de conexão exedido! Tente novamente mais tarde</string>
     <string name="verNoMapa">Ver no mapa</string>
     <string name="success_checkin">CheckIn efetuado com sucesso !</string>
-    <string name="error_checkin">Não foi possível realizar o check-in! o seuinte erro ocorreu:</string>
+    <string name="error_checkin">Não foi possível realizar o check-in! o seguinte erro ocorreu:</string>
     <string name="checkin_error_name_empty">O nome deve ser informado!</string>
     <string name="checkin_error_email_empty">O email deve ser informado!</string>
     <string name="checkin_error_email_invalid">Email inválido!!</string>
     <string name="str_nome">Nome:</string>
     <string name="str_email">Email:</string>
     <string name="str_fazer_checkin">Fazer Check-In</string>
+    <string name="checkIn">Check-In</string>
 </resources>

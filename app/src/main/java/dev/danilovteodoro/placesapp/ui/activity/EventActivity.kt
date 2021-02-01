@@ -63,7 +63,9 @@ class EventActivity : AppCompatActivity() {
             }
         }
 
-        viewModel.callStateListener(EventStateListener.GetEvent(eventId))
+        if(viewModel.selectedEventLv.value == null){
+            viewModel.callStateListener(EventStateListener.GetEvent(eventId))
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -186,22 +188,26 @@ class EventActivity : AppCompatActivity() {
 
    private fun showProgress(){
        binding.mainLayout.visibility = View.GONE
+       binding.fabCheckIn.visibility = View.GONE
        binding.progress.visibility = View.VISIBLE
     }
     private fun hideProgress(){
        binding.mainLayout.visibility = View.VISIBLE
+        binding.fabCheckIn.visibility = View.VISIBLE
        binding.progress.visibility = View.GONE
     }
 
     private fun showError(errorMessage:String,errorIcon:Int){
         binding.layoutError.main.visibility = View.VISIBLE
         binding.mainLayout.visibility = View.GONE
+        binding.fabCheckIn.visibility = View.VISIBLE
         binding.layoutError.txtErrorMessage.text = errorMessage
         binding.layoutError.imgError.setImageResource(errorIcon)
     }
 
     private fun hideError(){
         binding.layoutError.main.visibility = View.GONE
+        binding.fabCheckIn.visibility = View.VISIBLE
         binding.mainLayout.visibility = View.VISIBLE
     }
 

@@ -29,7 +29,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Check In"
+        android:text="@string/checkIn"
         android:textSize="30sp"
         android:textColor="@color/colorPrimary"/>
 
@@ -47,7 +47,8 @@
             android:drawableLeft="@drawable/ic_person"
             android:imeOptions="actionNext"
             android:id="@+id/editName"
-            android:inputType="textPersonName">
+            android:inputType="textPersonName|textCapWords"
+            >
             <requestFocus/>
         </com.google.android.material.textfield.TextInputEditText>
 

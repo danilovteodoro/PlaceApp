@@ -2,7 +2,7 @@ package dev.danilovteodoro.placesapp.repository
 
 import android.content.Context
 import dagger.hilt.android.qualifiers.ActivityContext
-import dev.danilovteodoro.placesapp.data.EventDao
+import dev.danilovteodoro.placesapp.data.dao.EventDao
 import dev.danilovteodoro.placesapp.data.mapper.EventDataMapper
 import dev.danilovteodoro.placesapp.model.CheckIn
 import dev.danilovteodoro.placesapp.model.Event
@@ -20,13 +20,13 @@ import javax.inject.Inject
 class EventRepository
 @Inject
 constructor(
-    val eventApi: EventApi,
-    val eventMapper: EventMapper,
-    val checkInApi: CheckInApi,
-    val checkInMapper: CheckInMapper,
-    val eventDao: EventDao,
-    val eventDataMapper: EventDataMapper,
-    @ActivityContext val context:Context
+        val eventApi: EventApi,
+        val eventMapper: EventMapper,
+        val checkInApi: CheckInApi,
+        val checkInMapper: CheckInMapper,
+        val eventDao: EventDao,
+        val eventDataMapper: EventDataMapper,
+        @ActivityContext val context:Context
 ){
     fun getEvents():Flow<DataState<List<Event>>> = flow {
         emit(DataState.Loading)
