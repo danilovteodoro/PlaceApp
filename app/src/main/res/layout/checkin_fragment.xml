@@ -5,7 +5,8 @@
     android:layout_weight="1"
     android:layout_height="match_parent"
     android:minWidth="400dp"
-    android:padding="20dp">
+    android:padding="20dp"
+    android:background="@color/white">
 
     <ImageView
         android:id="@+id/imgClose"
@@ -41,7 +42,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nome:"
+            android:hint="@string/str_nome"
             android:background="#fff"
             android:drawableLeft="@drawable/ic_person"
             android:imeOptions="actionNext"
@@ -59,7 +60,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email:"
+            android:hint="@string/str_email"
             android:drawableLeft="@drawable/ic_email"
             android:background="#fff"
             android:imeOptions="actionDone"
@@ -72,6 +73,6 @@
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Fazer Check In"/>
+        android:text="@string/str_fazer_checkin"/>
 
 </LinearLayout>

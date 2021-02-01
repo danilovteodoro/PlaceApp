@@ -36,6 +36,9 @@ class CheckInDialogFragment: DialogFragment() {
         binding.btnCheckIn.setOnClickListener {
             doCheckIn()
         }
+        binding.imgClose.setOnClickListener {
+            dismiss()
+        }
         return binding.root
     }
 
