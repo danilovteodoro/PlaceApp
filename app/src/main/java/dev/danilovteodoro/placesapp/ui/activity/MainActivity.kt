@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import dev.danilovteodoro.placesapp.R
@@ -46,7 +45,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun registerObserver(){
-        viewModel.eventsLv.observe(this, Observer { dataState->
+        viewModel.eventsLv.observe(this, { dataState->
             when(dataState){
                 is DataState.Loading -> {
                     showProgress()

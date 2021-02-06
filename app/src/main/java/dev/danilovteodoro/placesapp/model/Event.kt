@@ -1,6 +1,5 @@
 package dev.danilovteodoro.placesapp.model
 
-import com.google.gson.annotations.SerializedName
 import java.util.*
 
 data class Event(

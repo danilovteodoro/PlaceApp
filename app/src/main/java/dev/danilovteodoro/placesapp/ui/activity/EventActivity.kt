@@ -8,10 +8,8 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import dev.danilovteodoro.placesapp.R
@@ -25,7 +23,6 @@ import dev.danilovteodoro.placesapp.util.NumberUtil
 import util.Constantes
 import util.DataState
 import util.DateUtil
-import java.net.URI
 
 @AndroidEntryPoint
 class EventActivity : AppCompatActivity() {
@@ -50,7 +47,7 @@ class EventActivity : AppCompatActivity() {
         _binding = ActivityEventBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupToolBar()
-        eventId = intent.getStringExtra(IT_EVENT)
+        eventId = intent.getStringExtra(IT_EVENT) ?: ""
         registerObserver()
 
         binding.btnOpenMap.setOnClickListener {
@@ -58,8 +55,10 @@ class EventActivity : AppCompatActivity() {
         }
 
         binding.fabCheckIn.setOnClickListener {
-            CheckInDialogFragment.show(event!!.id,supportFragmentManager){checkIn ->
-              viewModel.callStateListener(EventStateListener.PostCheckIn(checkIn))
+            event?.let { event ->
+                CheckInDialogFragment.show(event.id,supportFragmentManager){checkIn ->
+                    viewModel.callStateListener(EventStateListener.PostCheckIn(checkIn))
+                }
             }
         }
 
@@ -75,8 +74,8 @@ class EventActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    fun registerObserver(){
-        viewModel.selectedEventLv.observe(this, Observer { dataState->
+    private fun registerObserver(){
+        viewModel.selectedEventLv.observe(this, { dataState->
             when(dataState){
                 is DataState.Loading ->{
                     showProgress()
@@ -111,7 +110,7 @@ class EventActivity : AppCompatActivity() {
         })
 
 
-        viewModel.checkInLv.observe(this, Observer { dataState->
+        viewModel.checkInLv.observe(this, { dataState->
             when(dataState){
                 is DataState.Loading ->{
                     showProgress()
@@ -149,26 +148,27 @@ class EventActivity : AppCompatActivity() {
         })
     }
 
-    fun setupToolBar(){
+    private fun setupToolBar(){
         setSupportActionBar(binding.appbar)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-//        supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_arrow_back)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         binding.collapse.setExpandedTitleColor(Color.TRANSPARENT)
     }
 
-    fun goToMaps(){
-        val uri = Uri.parse(
-            "geo:"+event!!.latitude+","+
-                    event!!.longitude+"?q="+
-                    event!!.latitude+","+
-                    event!!.longitude+
-                    "("+Uri.encode(event!!.title)+")"
-        )
-        val intent = Intent(Intent.ACTION_VIEW,uri)
-        startActivity(intent)
+    private fun goToMaps(){
+        event?.let { event ->
+            val uri = Uri.parse(
+                "geo:"+event.latitude+","+
+                        event.longitude+"?q="+
+                        event.latitude+","+
+                        event.longitude+
+                        "("+Uri.encode(event.title)+")"
+            )
+            val intent = Intent(Intent.ACTION_VIEW,uri)
+            startActivity(intent)
+        }
     }
 
-    fun updateLayout(){
+    private fun updateLayout(){
         event?.let { event ->
             Picasso.get().load(event.image)
                 .placeholder(R.drawable.ic_photo)
@@ -177,7 +177,7 @@ class EventActivity : AppCompatActivity() {
             // update Title
             binding.txtPlaceName.text = event.title
             binding.collapse.title = event.title
-            setTitle(event.title)
+            title = event.title
 
             //update values
             binding.txtDataHora.text = DateUtil.format(event.date,Constantes.DATE_FORMAT)
@@ -205,11 +205,7 @@ class EventActivity : AppCompatActivity() {
         binding.layoutError.imgError.setImageResource(errorIcon)
     }
 
-    private fun hideError(){
-        binding.layoutError.main.visibility = View.GONE
-        binding.fabCheckIn.visibility = View.VISIBLE
-        binding.mainLayout.visibility = View.VISIBLE
-    }
+
 
     private fun showCheckInCompleted(){
         val alert = AlertDialog.Builder(this)

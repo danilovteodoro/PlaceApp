@@ -18,15 +18,15 @@ import util.DateUtil
 class EventAdapter(context:Context,val headerText:String) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
     private val inflater:LayoutInflater = LayoutInflater.from(context)
     private var events:List<Event> = emptyList()
-    private val CONTENT_TYPE = 1
-    private val HEADER_TYPE = 2
+    private val contentType = 1
+    private val headerType = 2
 
     override fun getItemViewType(position: Int): Int {
-        return if(position == 0) HEADER_TYPE else CONTENT_TYPE
+        return if(position == 0) headerType else contentType
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return if (viewType == CONTENT_TYPE){
+        return if (viewType == contentType){
             val view = inflater.inflate(R.layout.inflater_event, parent,false)
             ViewHolder(view)
          }else{

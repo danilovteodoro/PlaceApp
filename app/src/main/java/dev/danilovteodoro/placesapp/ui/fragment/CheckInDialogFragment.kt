@@ -1,6 +1,5 @@
 package dev.danilovteodoro.placesapp.ui.fragment
 
-import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -31,7 +30,7 @@ class CheckInDialogFragment: DialogFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = CheckinFragmentBinding.inflate(inflater)
         binding.btnCheckIn.setOnClickListener {
             doCheckIn()
