@@ -16,4 +16,12 @@
     <string name="str_email">Email:</string>
     <string name="str_fazer_checkin">Fazer Check-In</string>
     <string name="checkIn">Check-In</string>
+    <string name="descriptionIconClock">Icon Clock</string>
+    <string name="descriptionIconMoney">Icon Money</string>
+    <string name="descriptionImageEvent">Event</string>
+    <string name="descriptionFabCheckIn">Fazer Check - In</string>
+    <string name="descriptionIconClose">Close</string>
+    <string name="descriptionIconError">Error Alert</string>
+    <string name="str_ok">Ok</string>
+    <string name="descriptionIconNetwork">Network</string>
 </resources>

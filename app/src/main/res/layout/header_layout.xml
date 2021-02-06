@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:text="@string/header_events"
-        android:textSize="35sp"
+        android:textSize="@dimen/text35"
         android:lines="2"
         android:padding="10dp"
         android:textColor="@color/colorPrimaryDark"

@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setSupportActionBar(binding.appbar)
         binding.rcEvents.layoutManager = LinearLayoutManager(this)
         adapter = EventAdapter(this,getString(R.string.header_events))
         binding.rcEvents.adapter = adapter
