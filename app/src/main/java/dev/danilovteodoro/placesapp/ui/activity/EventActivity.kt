@@ -1,6 +1,7 @@
 package dev.danilovteodoro.placesapp.ui.activity
 
 import android.app.Activity
+import android.app.ActivityOptions
 import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.Color
@@ -34,10 +35,10 @@ class EventActivity : AppCompatActivity() {
 
     companion object{
         private const val IT_EVENT = "itEventId"
-        fun start(activity:Activity,eventId:String){
+        fun start(activity:Activity,eventId:String,activityOptions: ActivityOptions){
             val intent = Intent(activity,EventActivity::class.java)
             intent.putExtra(IT_EVENT,eventId)
-            activity.startActivity(intent)
+            activity.startActivity(intent,activityOptions.toBundle())
         }
     }
 

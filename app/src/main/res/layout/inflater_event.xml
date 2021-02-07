@@ -19,7 +19,9 @@
             app:layout_constraintDimensionRatio="16:9"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/descriptionImageEvent"/>
+            android:contentDescription="@string/descriptionImageEvent"
+            android:transitionName="@string/imageTransicion"
+            />
 
         <TextView
             android:id="@+id/txtTitle"

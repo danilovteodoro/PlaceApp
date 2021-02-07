@@ -161,6 +161,7 @@
                 app:layout_collapseParallaxMultiplier="0.7"
                 android:fitsSystemWindows="true"
                 android:contentDescription="@string/descriptionImageEvent"
+                android:transitionName="@string/imageTransicion"
                 />
 
  

@@ -1,5 +1,6 @@
 package dev.danilovteodoro.placesapp.ui.activity
 
+import android.app.ActivityOptions
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -29,9 +30,11 @@ class MainActivity : AppCompatActivity() {
         binding.rcEvents.layoutManager = LinearLayoutManager(this)
         adapter = EventAdapter(this,getString(R.string.header_events))
         binding.rcEvents.adapter = adapter
-        binding.rcEvents.onItemTouch { position, _ ->
+        binding.rcEvents.onItemTouch { position, view ->
+            val options = ActivityOptions.makeSceneTransitionAnimation(this,
+            view.findViewById(R.id.imgEvent),getString(R.string.imageTransicion))
             EventActivity.start(this,
-            adapter.get(position).id)
+            adapter.get(position).id,options)
         }
         binding.layoutError.btnRetry.setOnClickListener {
             hideError()

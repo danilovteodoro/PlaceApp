@@ -12,6 +12,7 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" > @color/statusBarColor</item>
+        <item name="android:windowContentTransitions">true</item>
     </style>
 
 
@@ -27,6 +28,7 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" > @color/statusBarColor</item>
+        <item name="android:windowContentTransitions">true</item>
         <!-- Customize your theme here. -->
     </style>
 
